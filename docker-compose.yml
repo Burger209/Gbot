@@ -13,7 +13,7 @@ services:
     environment: 
       - TOKEN=Token
       - OWNERID=ID
-      - PREFIXES=!,-								                              # Separate the prefix with comma. Comma is not allowed as prefix.
+      - PREFIXES=!,-  # Separate the prefix with comma. Comma is not allowed as prefix.
       - MONGOURL=mongodb://db:27017/gbot
     networks: 
       - bot
