@@ -62,6 +62,7 @@ module.exports = class Gbot extends Client {
 			})
 			.on('queueEnd', player => {
 				player.destroy();
+				player.disconnect();
 			});
 
 		this.util.load();

@@ -19,8 +19,7 @@ module.exports = class extends Command {
 			textChannel: msg.channel.id,
 			voiceChannel: channel.id
 		});
-
-		player.connect();
+		if (!player.playing) player.connect();
 
 		this.client.music.search(args.join(' '), msg.author).then(async res => {
 			switch (res.loadType) {
