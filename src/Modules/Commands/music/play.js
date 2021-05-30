@@ -59,9 +59,9 @@ module.exports = class extends Command {
 				break;
 
 			case 'PLAYLIST_LOADED':
-				res.playlist.tracks.forEach(track => player.queue.add(track));
-				const duration = res.playlist.tracks.reduce((acc, cur) => ({duration: acc.duration + cur.duration}));
-				msg.channel.send(`Added to queue \`${res.playlist.tracks.length}\` \`${hd(duration, {units: ['h', 'm', 's']})}\` tracks in playlist \`${res.playlist.info.name}\``).then(m => m.delete({ timeout: 5000 }));
+				console.log(res)
+				res.tracks.forEach(track => player.queue.add(track));
+				msg.channel.send(`Added to queue \`${res.playlist.name}\` \`${hd(res.playlist.duration, {units: ['h', 'm', 's']})}\` tracks in playlist \`${res.tracks.length}\``).then(m => m.delete({ timeout: 5000 }));
 				if (!player.playing) player.play();
 				break;
 			}
