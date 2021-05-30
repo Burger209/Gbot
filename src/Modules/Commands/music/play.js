@@ -59,7 +59,6 @@ module.exports = class extends Command {
 				break;
 
 			case 'PLAYLIST_LOADED':
-				console.log(res)
 				res.tracks.forEach(track => player.queue.add(track));
 				msg.channel.send(`Added to queue \`${res.playlist.name}\` \`${hd(res.playlist.duration, {units: ['h', 'm', 's']})}\` tracks in playlist \`${res.tracks.length}\``).then(m => m.delete({ timeout: 5000 }));
 				if (!player.playing) player.play();
