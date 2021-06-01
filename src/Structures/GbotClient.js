@@ -1,6 +1,8 @@
 const { Client, Collection } = require('discord.js');
 const hd = require('humanize-duration');
 const { Manager } = require('erela.js');
+const Spotify = require('erela.js-spotify');
+const Deezer = require('erela.js-deezer');
 const Util = require('./Util');
 
 module.exports = class Gbot extends Client {
@@ -42,6 +44,9 @@ module.exports = class Gbot extends Client {
 
 		if (!options.nodes) throw new Error('No Lavalink settings was provided');
 		this.nodes = options.nodes;
+
+		if (!options.spotify) throw new Error('No Spotify login was provided');
+		this.spotify = options.spotify;
 	}
 
 	start(token = this.token) {
@@ -50,6 +55,10 @@ module.exports = class Gbot extends Client {
 		const client = this;
 		client.music = new Manager({
 			nodes: client.nodes,
+			plugins: [
+				new Spotify(this.spotify),
+				new Deezer()
+			],
 			send(id, payload) {
 				const guild = client.guilds.cache.get(id);
 				if (guild) guild.shard.send(payload);
