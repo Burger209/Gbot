@@ -7,14 +7,11 @@ module.exports = class extends Event {
 		});
 	}
 	async run() {
-		const i = await this.client.generateInvite(['ADMINISTRATOR']);
-
 		const str = this.client.prefixes.toString();
 		this.client.user.setActivity(`Prefixes: ${str.split(',').join(' ')}`);
 
 		console.log(`Guilds: ${this.client.guilds.cache.size}`);
 		console.log(`Users: ${this.client.users.cache.size}`);
-		console.log(i);
 		console.log('im online');
 		
 		this.client.util.mongo();
