@@ -6,7 +6,7 @@ module.exports = class extends Event {
 	}
 	async run(guild) {
 		try {
-			await this.client.util.deleteGuild(guild);
+			await this.client.util.deleteSettings(guild);
 		} catch (error) {
 			console.log(error);
 		}

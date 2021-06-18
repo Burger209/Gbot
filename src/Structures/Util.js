@@ -29,7 +29,7 @@ module.exports = class Util {
 				const category = dir.split('/').pop();
 				const file = require(nodeFile);
 				if (!this.isClass(file)) throw new TypeError(`${name} Must contain a class`);
-				const node = new file(this.client, name.toLowerCase());
+				const node = new file(this.client, name);
 				if (node instanceof Command) {
 					this.loadCommand(node, category);
 				} else if (node instanceof Event) {
@@ -41,8 +41,8 @@ module.exports = class Util {
 
 	loadCommand(command, category) {
 		command.category = category;
-		console.log(`Loaded Command: ${command.name}.js`);
-		this.client.commands.set(command.name, command);
+		console.log(`Loaded Command: ${command.name.toLowerCase()}.js`);
+		this.client.commands.set(command.name.toLowerCase(), command);
 		if (command.aliases) {
 			for (const alias of command.aliases) {
 				this.client.aliases.set(alias, command);
@@ -51,7 +51,7 @@ module.exports = class Util {
 	}
 
 	loadEvent(event) {
-		console.log(`Loaded Event: ${event.name}.js`);
+		console.log(`Loaded Event: ${event.name.toLowerCase()}.js`);
 		this.client.events.set(event.name, event);
 		event.emitter[event.type](event.name, (...args) => event.run(...args));
 	}
