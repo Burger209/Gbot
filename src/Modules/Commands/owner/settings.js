@@ -12,7 +12,7 @@ module.exports = class extends Command {
 		const update = args.slice(1).join(' ');
 
 		switch (args[0]) {
-		case 'modLogs' : 
+		case 'modLogs': 
 			try {
 				const channel = msg.guild.channels.cache.find(c => c.name === update) || msg.mentions.channels.first();
 				if (!channel) return msg.channel.send('could not find channel').then(m => m.delete({ timeout: 5000 }));
@@ -22,7 +22,7 @@ module.exports = class extends Command {
 				console.error(error);
 			}
 			break;
-		case 'adminRole' : 
+		case 'adminRole': 
 			try {
 				const role = msg.guild.roles.cache.find(r => r.name === update) || msg.mentions.roles.first();
 				if (!role) return msg.channel.send('could not find role').then(m => m.delete({ timeout: 5000 }));
@@ -32,7 +32,7 @@ module.exports = class extends Command {
 				console.error(error);
 			}
 			break;
-		case 'modRole' : 
+		case 'modRole': 
 			try {
 				const role = msg.guild.roles.cache.find(r => r.name === update) || msg.mentions.roles.first();
 				if (!role) return msg.channel.send('could not find role').then(m => m.delete({ timeout: 5000 }));
@@ -41,6 +41,17 @@ module.exports = class extends Command {
 			} catch (error) {
 				console.error(error);
 			}
+			break;
+		case 'autoTranslate':
+			const v = new RegExp('^(true|false)$').test(update);
+			if (!v) return msg.channel.send('true or false was not selected');
+			console.log(update);
+			if (update === 'true') {
+				await this.client.util.updateSettings(msg.guild, { autoTranslate: true });
+			} else {
+				await this.client.util.updateSettings(msg.guild, { autoTranslate: false });
+			}
+			msg.channel.send(`Updated autoTranslate to: ${v}`);
 			break;
 		default:
 			const skip = ['_id', 'guildID', '__v'];

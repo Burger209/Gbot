@@ -6,9 +6,9 @@ module.exports = class extends Event {
 	}
 	async run(guild) {
 		try {
-			await this.client.util.createSettings({guildID: guild.id});
+			await this.client.util.deleteGuild(guild);
 		} catch (error) {
-			console.error(error);
+			console.log(error);
 		}
 	}
 };

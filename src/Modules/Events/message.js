@@ -1,4 +1,5 @@
 const Event = require('../../Structures/Event');
+const translate  = require('@vitalets/google-translate-api');
 
 module.exports = class extends Event {
 	constructor(...args) {
@@ -23,12 +24,24 @@ module.exports = class extends Event {
 			}
 		}
 
-		if (!msg.content.startsWith(prefix)) return;
-
 		// eslint-disable-next-line no-unused-vars
 		const [cmd, ...args] = msg.content.slice(prefix.length).trim().split(/ +/g);
 
 		const level = await this.client.level(msg.member);
+
+		if (!msg.content.startsWith(prefix)) {
+			if (this.client.settings.autoTranslate) {
+				translate(msg.content, { to: this.client.settings.defTranslateLang }).then(res => {
+					if (res.from.language.iso !== this.client.settings.defTranslateLang) {
+						msg.channel.send(res.text);
+					} else {
+						return;
+					}
+				});
+			} else {
+				return;
+			}
+		}
 
 		const command = this.client.commands.get(cmd.toLowerCase()) || this.client.aliases.get(cmd.toLowerCase());
 		if (command && command.level <= level) {

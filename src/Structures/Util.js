@@ -90,4 +90,12 @@ module.exports = class Util {
 		}
 		return data.updateOne(settings);
 	}
+
+	async deleteSettings(guild) {
+		let data = await this.getSettings(guild);
+		data.deleteOne({ guildID: guild.id }, e => {
+			if (e) console.log(e);
+			console.log(`Deleted guild(${guild.id})`);
+		});
+	}
 };

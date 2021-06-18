@@ -5,7 +5,9 @@ const settingsSchema = Schema({
 	guildID: String,
 	modLogs: String,
 	modRole: String,
-	adminRole: String
+	adminRole: String,
+	autoTranslate: Boolean,
+	defTranslateLang: String
 });
 
 module.exports = model('Settings', settingsSchema);

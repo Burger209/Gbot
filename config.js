@@ -12,7 +12,9 @@ module.exports = {
 	defaultSettings: {
 		modLogs: 'none',
 		modRole: 'none',
-		adminRole: 'none'
+		adminRole: 'none',
+		autoTranslate: false,
+		defTranslateLang: 'en'
 	},
 	nodes: [{
 		host: 'lava',
