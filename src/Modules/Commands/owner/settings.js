@@ -42,17 +42,6 @@ module.exports = class extends Command {
 				console.error(error);
 			}
 			break;
-		case 'autoTranslate':
-			const v = new RegExp('^(true|false)$').test(update);
-			if (!v) return msg.channel.send('true or false was not selected');
-			console.log(update);
-			if (update === 'true') {
-				await this.client.util.updateSettings(msg.guild, { autoTranslate: true });
-			} else {
-				await this.client.util.updateSettings(msg.guild, { autoTranslate: false });
-			}
-			msg.channel.send(`Updated autoTranslate to: ${v}`);
-			break;
 		default:
 			const skip = ['_id', 'guildID', '__v'];
 			const values = [];

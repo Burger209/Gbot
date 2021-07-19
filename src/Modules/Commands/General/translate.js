@@ -1,5 +1,5 @@
 const Command = require('../../../Structures/Command');
-const translate  = require('@vitalets/google-translate-api');
+const Translate = require('@vitalets/google-translate-api');
 
 module.exports = class extends Command {
 	constructor(...args) {
@@ -15,10 +15,8 @@ module.exports = class extends Command {
 		if (!args[1]) return msg.channel.send('No text was provided');
 		const query = args.slice(1).join(' ');
 
-		translate(query, {to: lang}).then(res => {
-			return msg.channel.send(res.text);
-		}).catch(e => {
-			console.error(e);
-		});
+		const translated = await Translate(query, {to: lang});
+
+		msg.channel.send(translated.text);
 	}
 };
