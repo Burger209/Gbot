@@ -392,7 +392,14 @@ denque@^1.4.1:
   resolved "https://registry.npmjs.org/denque/-/denque-1.5.0.tgz"
   integrity sha512-CYiCSgIF1p6EUByQPlGkKnP1M9g0ZV3qMIrqMqZqdwazygIA/YP2vrbcyl1h/WppKJTdl1F85cXIle+394iDAQ==
 
-discord.js@^12.3.1:
+discord.js-poll@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/discord.js-poll/-/discord.js-poll-1.0.4.tgz#65e0f4120d0401443adcacdeff4b7be98858f479"
+  integrity sha512-QwO02e7P1GXXy/qqDGB06c7GJubIQ+ibk5hYCk+aPcluFBue7fulXGrbJ42kUsAr31CeAOC3FcqfbXWcn1uS/Q==
+  dependencies:
+    discord.js "^12.5.3"
+
+discord.js@^12.3.1, discord.js@^12.5.3:
   version "12.5.3"
   resolved "https://registry.npmjs.org/discord.js/-/discord.js-12.5.3.tgz"
   integrity sha512-D3nkOa/pCkNyn6jLZnAiJApw2N9XrIsXUAdThf01i7yrEuqUmDGc7/CexVWwEcgbQR97XQ+mcnqJpmJ/92B4Aw==
